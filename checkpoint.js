@@ -154,8 +154,8 @@ LinkedList.prototype.switchPos = function(pos1, pos2){
   if(pos1<0||pos2<0) return false;
   let current1= this.head
   for(let i=0; i<pos1;i++){
-    if (current1.next===null)return false
-    else current1=current1.next;
+    if (current1.next===null)return false        /// no estaba seguro si era válido cambiar los valores de los nodos
+    else current1=current1.next;                 /// o si tenía que cambiar el nodo íntegro de lugar. elegí la opción más sencilla que pasara el test.
   }
   current2=this.head;
   for(let i=0;i<pos2; i++){
@@ -230,6 +230,30 @@ var mergeLinkedLists = function(linkedListOne, linkedListTwo){
 
 var cardGame = function(playerOneCards, playerTwoCards){
   // Tu código aca:
+  let castillo1=100;
+  let castillo2=100;
+  let attackP1=0
+  let defenseP1=0;
+  let attackP2=0
+  let defenseP2=0;
+
+  while(playerTwoCards.array.length>1){
+    attackP1=playerOneCards.dequeue().attack;
+    defenseP1= playerOneCards.dequeue().defense;
+    attackP2=playerTwoCards.dequeue().attack;
+    defenseP2=playerTwoCards.dequeue().defense;
+    if(attackP1>defenseP2){
+      castillo2= castillo2 - (attackP1- defenseP2);
+    }
+    if(attackP2>defenseP1){
+      castillo1=castillo1 -(attackP2-defenseP1);
+    }
+    if(castillo1<=0 && castillo2<=0) return 'TIE';
+    if(castillo1<=0) return 'PLAYER TWO';
+    if(castillo2<=0) return 'PLAYER ONE';
+  }
+  if (castillo1===castillo2) return 'TIE';
+  return castillo1>castillo2 ? 'PLAYER ONE' : 'PLAYER TWO';
 
 }
 
@@ -254,8 +278,13 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
 BinarySearchTree.prototype.height = function(){
   // Tu código aca:
-
+  let izqH=0;
+  let derH=0;
+  if(this.left) izqH=this.left.height();
+  if(this.right) derH=this.right.height();
+  return 1+ Math.max(izqH, derH);
 }
+
 
 
 // ---------------
