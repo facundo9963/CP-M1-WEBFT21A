@@ -316,7 +316,23 @@ BinarySearchTree.prototype.height = function(){
 
 var binarySearch = function (array, target) {
   // Tu código aca:
+  var minimo=0;
+  var maximo=array.length-1;
 
+  while(minimo <= maximo){
+    var medio = Math.floor((minimo + maximo) / 2);
+
+    if (array[medio] === target) {
+      return medio;
+    }
+    if (array[medio] > target){
+      maximo = medio -1;
+    } else {
+      minimo = medio +1;
+    }
+    
+  }
+  return -1;
 }
 
 // EJERCICIO 9
@@ -344,6 +360,7 @@ var binarySearch = function (array, target) {
 
 var specialSort = function(array, orderFunction) {
   // Tu código aca:
+
 
 }
 
@@ -377,6 +394,7 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
+
 
 }
 
