@@ -39,7 +39,22 @@ const {
 
 var isAncestor = function(genealogyTree, ancestor, descendant){
   // Tu código aca:
+  let antecesor= genealogyTree[ancestor]
+  function evaluarHijos(current){
+    for(let i=0; i<current.length;i++){
+      if (current[i]=== descendant){
+        return true
+      }
+    }
+    return false;
+  }
+  if (evaluarHijos(antecesor)) return true;
+  for (let i=0; i<antecesor.length;i++){
+    let nuevoAntecesor= antecesor[i];
+    if(evaluarHijos(genealogyTree[nuevoAntecesor])) return true;
 
+  }
+  return false;
 }
 
 
