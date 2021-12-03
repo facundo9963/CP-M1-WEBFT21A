@@ -394,7 +394,17 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
-
+  sintomasEnComun=0;
+  return function(persona){
+    sintomasEnComun=0;
+    for(let i=0; i<persona.symptoms.length; i++){
+      if(symptoms.includes(persona.symptoms[i])){
+        sintomasEnComun++;
+      }
+    };
+    if(sintomasEnComun>=min) return true;
+    else return false;
+  }
 
 }
 
