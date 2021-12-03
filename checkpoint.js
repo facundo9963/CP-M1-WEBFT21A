@@ -151,6 +151,21 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
+  if(pos1<0||pos2<0) return false;
+  let current1= this.head
+  for(let i=0; i<pos1;i++){
+    if (current1.next===null)return false
+    else current1=current1.next;
+  }
+  current2=this.head;
+  for(let i=0;i<pos2; i++){
+    if (current2.next===null)return false
+    else current2=current2.next;
+  }
+  let aux= current1.value;
+  current1.value=current2.value;
+  current2.value=aux;
+  return true;
 
 }
 
